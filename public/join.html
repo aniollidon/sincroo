@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sincroo - Unir-se a la Sala</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/join.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🎵 Sincroo</h1>
+      <p>Unir-se a una sala de sincronització</p>
+    </header>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-indicator" id="connectionStatus"></div>
+        <span id="connectionText">Connectant...</span>
+      </div>
+      <div class="status-item">
+        <span id="serverTime">--:--:--</span>
+      </div>
+      <div class="status-item">
+        <span id="offsetDisplay">Offset: --ms</span>
+      </div>
+    </div>
+
+    <!-- NO HI HA SALA ACTIVA -->
+    <div class="card" id="noRoomCard">
+      <div class="no-room">
+        <h3>🚫 No hi ha cap sala activa</h3>
+        <p>Actualment no hi ha cap sala de sincronització configurada.</p>
+      </div>
+    </div>
+
+    <!-- HI HA  SALA ACTIVA -->
+    <div class="card hidden" id="roomCard">
+      <!-- Informació de la sala -->
+      <div class="join-room-info">
+        <div class="room-status" id="roomStatus">Sala disponible</div>
+        <div class="room-details">
+          <div class="room-detail">
+            <div class="room-detail-value" id="startTime">--:--:--</div>
+            <div class="room-detail-label">Hora d'inici</div>
+          </div>
+          <div class="room-detail">
+            <div class="room-detail-value" id="participantCount">0</div>
+            <div class="room-detail-label">Participants</div>
+          </div>
+        </div>
+        
+        <!-- Countdown dins de la sala -->
+        <div class="countdown hidden" id="roomCountdown">
+          <div class="countdown-display" id="roomCountdownDisplay">00:00</div>
+          <div class="countdown-label">fins a la sincronització</div>
+        </div>
+      </div>
+
+      <!-- Seleccionar fitxer -->
+      <div class="file-upload">
+        <label for="mediaFile">📁 Selecciona el teu fitxer d'àudio o vídeo:</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="mediaFile" accept="audio/*,video/*">
+          <div class="file-input" id="fileInputDisplay">
+            Clica per seleccionar el mateix fitxer de la sala
+          </div>
+        </div>
+      </div>
+
+      <!-- REPRODUCTOR -->
+      <div class="media-player">
+        <video id="mediaPlayer" controls preload="auto" style="display: none;"></video>
+      </div>
+
+      <button class="btn btn-primary" id="joinBtn" disabled>
+        Uneix-te a la sala
+      </button>
+
+      <button class="btn btn-danger hidden" id="leaveBtn">
+        Surt de la sala
+      </button>
+
+      <a href="/ses" class="manage-link hidden"> Gestiona la sala</a>
+    </div>
+
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/join-client.js"></script>
+</body>
+</html>

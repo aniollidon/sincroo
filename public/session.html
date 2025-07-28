@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sincroo - Gestionar Sala</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/session.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🎵 Sincroo</h1>
+      <p>Gestionar sala de sincronització</p>
+    </header>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-indicator" id="connectionStatus"></div>
+        <span id="connectionText">Connectant...</span>
+      </div>
+      <div class="status-item">
+        <span id="serverTime">--:--:--</span>
+      </div>
+      <div class="status-item">
+        <span id="offsetDisplay">Offset: --ms</span>
+      </div>
+    </div>
+
+    <div class="card" id="setupCard">
+      <div class="time-input">
+        <label for="targetTime">Hora d'inici de la sincronització:</label>
+        <input type="time" id="targetTime" step="1">
+      </div>
+
+      <div class="time-suggestions">
+        <h3>Propostes d'hora:</h3>
+        <div class="suggestion-grid" id="timeSuggestions"></div>
+      </div>
+
+      <button class="btn btn-primary" id="setupRoomBtn" disabled>
+        Configura la Sala
+      </button>
+
+      <a href="/" class="join-link">Veure sala com a participant</a>
+    </div>
+
+    <div class="card hidden" id="roomCard">
+      <!-- Informació de la sala amb estil consistent -->
+      <div class="session-room-info">
+        <div class="room-status" id="roomStatus">Sala configurada</div>
+        <div class="room-details">
+          <div class="room-detail">
+            <div class="room-detail-value" id="configuredTime">--:--:--</div>
+            <div class="room-detail-label">Hora d'inici</div>
+          </div>
+          <div class="room-detail">
+            <div class="room-detail-value" id="participantCount">0</div>
+            <div class="room-detail-label">Participants</div>
+          </div>
+        </div>
+        
+        <!-- Llista detallada de participants per l'administrador -->
+        <div class="participants-list" id="participantsList"></div>
+      </div>
+
+      <div class="countdown hidden" id="roomCountdown">
+        <div class="countdown-display" id="roomCountdownDisplay">00:00</div>
+        <div class="countdown-label">fins a la sincronització</div>
+      </div>
+
+      <button class="btn btn-primary" id="reconfigureBtn">
+        Reconfigura la Sala
+      </button>
+
+      <a href="/" class="join-link">Veure sala com a participant</a>
+    </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/session-client.js"></script>
+</body>
+</html>
